@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="2" failures="0" errors="0" time="0.24298466">
+    <testsuite name="test/app.test.ts" timestamp="2026-05-12T17:43:59.074Z" hostname="codespaces-e8ae04" tests="2" failures="0" errors="0" skipped="0" time="0.24298466">
+        <testcase classname="test/app.test.ts" name="Fastify app &gt; GET /health returns ok status" time="0.234295502">
+        </testcase>
+        <testcase classname="test/app.test.ts" name="Fastify app &gt; GET / returns app message and version" time="0.003783973">
+        </testcase>
+    </testsuite>
+</testsuites>
