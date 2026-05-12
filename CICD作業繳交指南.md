@@ -95,7 +95,7 @@
 
 ## 失敗案例說明（報告可直接改寫）
 
-以下對應本 repo 已推送的 **故意失敗** commit：`chore: intentional test failure for homework demo`（短 SHA **`ceda8b3`**）。GitHub Actions 會永久保留該次的 **紅色 Failure**；修復 commit 為 **`af10c7a`**（`fix: restore passing tests; document…`）。到 **Actions → CI** 在列表中找 **ceda8b3** 或訊息含 _intentional test failure_ 的那次 run 截圖即可（目前 `main` 尖端已是綠燈，不影響繳交）。
+以下對應本 repo 已推送的 **故意失敗** commit（擇一截圖即可）：**`ceda8b3`**（_intentional test failure for homework demo_）、**`26f95d2`**（_intentional Vitest failure for homework report screenshot_）。對應修復：**`af10c7a`**、**`a0182ef`**。到 **Actions → 左欄點 CI**（不要只看「All workflows」頂端幾筆），用篩選 **Status: Failure** 或搜尋 SHA／commit 標題，即可找到紅色 run（尖端 `main` 已綠燈，失敗紀錄仍保留在歷史）。
 
 ### 故意製造的錯誤
 
