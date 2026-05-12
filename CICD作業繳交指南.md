@@ -93,6 +93,29 @@
 
 ---
 
+## 失敗案例說明（報告可直接改寫）
+
+以下對應 repo 中曾推送的 **故意失敗** commit（`chore: intentional test failure for homework demo`，SHA 請在 GitHub Actions 該次失敗 run 標題旁查看），Actions 會永久保留 **紅色失敗** 紀錄，可隨時在 **Actions → CI → 選該次 Failure** 截圖（目前 `main` 已修回綠燈，不影響繳交）。
+
+### 故意製造的錯誤
+
+- **類型**：單元測試失敗（Vitest）。
+- **檔案**：`test/app.test.ts`，案例「GET / returns app message and version」。
+- **內容**：將 `expect(response.json().message).toBe('CI/CD Lab Fastify app is running')` 改為預期錯誤字串（例如 `'WRONG_MESSAGE_INTENTIONAL_FAILURE'`），使斷言與實際回傳不一致。
+
+### Pipeline 現象
+
+- **失敗的 step**：`Run tests and generate JUnit report`（其後步驟可能因 job 已失敗而略過或一併失敗，依 runner 行為而定）。
+- **原因**：Vitest 斷言失敗，程序以 **非零 exit code** 結束，整個 workflow 顯示 **Failure**。
+- **截圖建議**：進入該次 run → 點 **`build-and-test`** → 展開失敗 step 的 log，保留含 `expected … to be …` 的片段；若有測試結果摘要，可一併截到失敗測試筆數。
+
+### 修正方式
+
+- 將該 `expect` **還原**為正確字串 `'CI/CD Lab Fastify app is running'`。
+- 本機執行 `npm run test` 確認通過後再 push；CI 應恢復成功。
+
+---
+
 ## 四、繳交前快速檢查清單
 
 - [ ] Fork 的 repo 網址正確、助教可開啟。
