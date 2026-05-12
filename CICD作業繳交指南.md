@@ -2,16 +2,16 @@
 
 ## 一、目前 `ci_b12705037.yaml` 與要求對照
 
-| 要求 | 狀態 | 說明 |
-|------|------|------|
-| 檔名 `.github/workflows/ci_{學號}.yaml` | 符合 | `ci_b12705037.yaml`（請確認學號是否為 **b12705037**） |
-| push 時自動執行 | 大致符合，建議留意 | 目前僅在 **`push` 到 `main`** 時觸發。若希望「任何分支 push 都跑 CI」，請把 `on.push` 改成不限制 `branches`，或加上你會用到的分支（例如 `feature/**`） |
-| TypeScript typecheck | 符合 | `npm run typecheck`（`tsc --noEmit`） |
-| Prettier check | 符合 | `npm run format:check` |
-| Test | 符合 | `npm run test`，並輸出 JUnit |
-| 任一步失敗 → Workflow 顯示失敗 | 符合 | 各 step 非 0 結束時，整個 job 會失敗；`publish-unit-test-result-action` 設了 `fail_on_error: true` |
-| 測試結果顯示在 Actions 結果頁 | 符合（需實際跑過確認） | `EnricoMi/publish-unit-test-result-action` 會把 JUnit 發佈到 **Checks / 測試結果**；若 GitHub 上沒出現，請在 workflow 頂層加上 `permissions: { checks: write }`（依倉庫預設 token 權限而定） |
-| 使用 Marketplace Actions | 符合 | `actions/checkout`、`setup-node`、`upload-artifact`、`EnricoMi/publish-unit-test-result-action` |
+| 要求                                    | 狀態                   | 說明                                                                                                                                                                                         |
+| --------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 檔名 `.github/workflows/ci_{學號}.yaml` | 符合                   | `ci_b12705037.yaml`（請確認學號是否為 **b12705037**）                                                                                                                                        |
+| push 時自動執行                         | 大致符合，建議留意     | 目前僅在 **`push` 到 `main`** 時觸發。若希望「任何分支 push 都跑 CI」，請把 `on.push` 改成不限制 `branches`，或加上你會用到的分支（例如 `feature/**`）                                       |
+| TypeScript typecheck                    | 符合                   | `npm run typecheck`（`tsc --noEmit`）                                                                                                                                                        |
+| Prettier check                          | 符合                   | `npm run format:check`                                                                                                                                                                       |
+| Test                                    | 符合                   | `npm run test`，並輸出 JUnit                                                                                                                                                                 |
+| 任一步失敗 → Workflow 顯示失敗          | 符合                   | 各 step 非 0 結束時，整個 job 會失敗；`publish-unit-test-result-action` 設了 `fail_on_error: true`                                                                                           |
+| 測試結果顯示在 Actions 結果頁           | 符合（需實際跑過確認） | `EnricoMi/publish-unit-test-result-action` 會把 JUnit 發佈到 **Checks / 測試結果**；若 GitHub 上沒出現，請在 workflow 頂層加上 `permissions: { checks: write }`（依倉庫預設 token 權限而定） |
+| 使用 Marketplace Actions                | 符合                   | `actions/checkout`、`setup-node`、`upload-artifact`、`EnricoMi/publish-unit-test-result-action`                                                                                              |
 
 **結論：** 以作業文字來看，設計已涵蓋主要得分點；建議你實際 push 一次到 GitHub，確認 Actions 綠燈且測試結果區塊有出現。若學號不是 b12705037，請重新命名檔案並調整內容敘述。
 
@@ -35,11 +35,11 @@
 
 任選一種（做完記得 **還原** 並再 push 一次讓 main 綠燈）：
 
-| 類型 | 簡單做法範例 | 預期 |
-|------|----------------|------|
+| 類型       | 簡單做法範例                              | 預期                             |
+| ---------- | ----------------------------------------- | -------------------------------- |
 | TypeScript | 在某 `.ts` 故意寫錯型別或引用不存在的變數 | `TypeScript typecheck` step 失敗 |
-| Prettier | 故意少縮排、多加空行不存檔 format | `Prettier check` step 失敗 |
-| 測試 | 暫時改某測試 `expect(1).toBe(2)` | `Run tests...` step 失敗 |
+| Prettier   | 故意少縮排、多加空行不存檔 format         | `Prettier check` step 失敗       |
+| 測試       | 暫時改某測試 `expect(1).toBe(2)`          | `Run tests...` step 失敗         |
 
 - 截圖：**紅色失敗**的 workflow run，並可點進失敗的 step 看 log 首段錯誤訊息。
 - 報告文字：寫「**錯誤原因**」（例如哪個檔案、什麼規則）與「**如何修正**」（例如跑 `npm run format:fix` 或還原程式）。
