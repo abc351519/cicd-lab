@@ -9,7 +9,7 @@
 | TypeScript typecheck                    | 符合                   | `npm run typecheck`（`tsc --noEmit`）                                                                                                                                                        |
 | Prettier check                          | 符合                   | `npm run format:check`                                                                                                                                                                       |
 | Test                                    | 符合                   | `npm run test`，並輸出 JUnit                                                                                                                                                                 |
-| 任一步失敗 → Workflow 顯示失敗          | 符合                   | 各 step 非 0 結束時，整個 job 會失敗；`publish-unit-test-result-action` 設了 `fail_on_error: true`                                                                                           |
+| 任一步失敗 → Workflow 顯示失敗          | 符合                   | 各 step 非 0 結束時，整個 job 會失敗；`publish-unit-test-result-action` 設了 `action_fail: true`（v2 輸入名稱）                                                                              |
 | 測試結果顯示在 Actions 結果頁           | 符合（需實際跑過確認） | `EnricoMi/publish-unit-test-result-action` 會把 JUnit 發佈到 **Checks / 測試結果**；若 GitHub 上沒出現，請在 workflow 頂層加上 `permissions: { checks: write }`（依倉庫預設 token 權限而定） |
 | 使用 Marketplace Actions                | 符合                   | `actions/checkout`、`setup-node`、`upload-artifact`、`EnricoMi/publish-unit-test-result-action`                                                                                              |
 
